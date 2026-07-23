@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 60 14% 95%;
+    --foreground: 25 30% 16%;
+    --muted: 60 10% 85%;
+    --muted-foreground: 30 15% 40%;
+    --accent: 80 36% 56%;
+    --accent-foreground: 25 30% 16%;
+    --border: 60 14% 85%;
+    --input: 60 14% 85%;
+    --ring: 28 32% 41%;
+    --radius: 0.5rem;
+    --ease-stripe: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-cream text-bark antialiased;
+    background-size: 400% 400%;
+    animation: gradient-shift 12s var(--ease-stripe) infinite;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  ::selection {
+    @apply bg-moss/30 text-bark;
+  }
+}
+
+@layer utilities {
+  .ease-stripe {
+    transition-timing-function: var(--ease-stripe);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    animation: none;
+  }
+}
